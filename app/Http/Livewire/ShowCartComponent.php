@@ -68,7 +68,7 @@ class ShowCartComponent extends Component
 
     public function order(){
         $items = CartFacade::getContent();
-        // try{
+         try{
             DB::beginTransaction();
                 $order = Order::create([
                     'order_id' => 'ORD'.rand(100000,90000),
@@ -91,9 +91,10 @@ class ShowCartComponent extends Component
                 }
             CartFacade::clear();
             DB::commit();
-        // }catch(Exception $e){
-        //     DB::rollBack();
-        // }
+            return redirect()->back()->with('success','Order Is successfully orders');
+        }catch(Exception $e){
+            DB::rollBack();
+        }
 
     }
 

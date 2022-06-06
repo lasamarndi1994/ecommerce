@@ -1,4 +1,7 @@
  <div class="row">
+     @if(Session::has('success'))
+        <p class="alert alert-info">{{ Session::get('success') }}</p>
+    @endif
      <div class="col-sm-12 col-md-10 col-md-offset-1">
          @if(count($items) > 0)
          <table class="table table-hover">
